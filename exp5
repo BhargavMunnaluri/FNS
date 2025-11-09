@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char key64[65];
+    char key56[57];
+    int i, j = 0;
+
+    printf("Enter a 64-bit key (as a binary string): ");
+    scanf("%s", key64);
+
+    if (strlen(key64) != 64) {
+        printf("Error: Input must be exactly 64 bits long.\n");
+        return 1;
+    }
+
+    for (i = 0; i < 64; i++) {
+        if ((i + 1) % 8 != 0) {
+            key56[j] = key64[i];
+            j++;
+        }
+    }
+
+    key56[j] = '\0';
+
+    printf("Resulting 56-bit key (parity bits removed):\n%s\n", key56);
+    printf("Length: %d bits\n", (int)strlen(key56));
+
+    return 0;
+}
