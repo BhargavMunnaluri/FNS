@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+typedef long long ll;
+
+ll power(ll base, ll exp, ll mod) {
+    ll res = 1;
+    base %= mod;
+
+    while (exp > 0) {
+        if (exp % 2 == 1) {
+            res = (res * base) % mod;
+        }
+
+        base = (base * base) % mod;
+        exp = exp / 2;
+    }
+    return res;
+}
+
+int main() {
+    ll P, G, a, b;
+    ll A, B;
+    ll S_alice, S_bob;
+
+    printf("Enter a public prime number (P): ");
+    scanf("%lld", &P);
+
+    printf("Enter a public generator (G) (must be < P): ");
+    scanf("%lld", &G);
+
+    printf("\n--- Alice's Side ---\n");
+    printf("Enter Alice's private key (a): ");
+    scanf("%lld", &a);
+
+    printf("\n--- Bob's Side ---\n");
+    printf("Enter Bob's private key (b): ");
+    scanf("%lld", &b);
+
+    A = power(G, a, P);
+    printf("\nAlice calculates her public key (A) and sends to Bob: %lld\n", A);
+
+    B = power(G, b, P);
+    printf("Bob calculates his public key (B) and sends to Alice: %lld\n", B);
+
+    S_alice = power(B, a, P);
+    printf("\nAlice calculates the shared secret (S) = (B^a) %% P = %lld\n", S_alice);
+
+    S_bob = power(A, b, P);
+    printf("Bob calculates the shared secret (S) = (A^b) %% P = %lld\n", S_bob);
+
+    if (S_alice == S_bob) {
+        printf("\nSuccess! Both Alice and Bob calculated the same secret key:\n");
+        printf("Shared Secret (S) = %lld\n", S_alice);
+    } else {
+        printf("\nError: Key exchange failed. Secrets do not match.\n");
+    }
+
+    return 0;
+}
