@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char binary[65];
+    long long decimalNum = 0;
+    int len, i;
+    int base = 1;
+
+    printf("Enter a binary number: ");
+    scanf("%s", binary);
+
+    len = strlen(binary);
+
+    for (i = len - 1; i >= 0; i--) {
+        if (binary[i] == '1') {
+            decimalNum += base;
+        }
+        else if (binary[i] != '0') {
+            printf("Invalid binary input: contains '%c'\n", binary[i]);
+            return 1;
+        }
+        base = base * 2;
+    }
+
+    printf("Decimal equivalent: %lld\n", decimalNum);
+
+    return 0;
+}
