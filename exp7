@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char input[100];
+    char output[100];
+    int n;
+    int len, i, j;
+
+    printf("Enter the binary string: ");
+    scanf("%s", input);
+    
+    len = strlen(input);
+
+    printf("Enter the number of left shifts: ");
+    scanf("%d", &n);
+
+    n = n % len;
+
+    j = 0;
+
+    for (i = n; i < len; i++) {
+        output[j] = input[i];
+        j++;
+    }
+
+    for (i = 0; i < n; i++) {
+        output[j] = input[i];
+        j++;
+    }
+
+    output[len] = '\0';
+
+    printf("Original string: %s\n", input);
+    printf("After %d circular left shifts: %s\n", n, output);
+
+    return 0;
+}
