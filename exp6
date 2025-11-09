@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main() {
+    char input[100];
+    char output[100];
+    int p_table[100];
+    int len, i;
+
+    printf("Enter the input binary string: ");
+    scanf("%s", input);
+    len = strlen(input);
+
+    printf("Enter the %d-bit permutation table (e.g., 4 1 3 2)\n", len);
+    printf("These are 1-indexed, space-separated numbers:\n");
+    for (i = 0; i < len; i++) {
+        scanf("%d", &p_table[i]);
+    }
+
+    for (i = 0; i < len; i++) {
+        int pos = p_table[i];
+
+        if (pos < 1 || pos > len) {
+            printf("Error: Invalid table position %d. Must be between 1 and %d.\n", pos, len);
+            return 1;
+        }
+
+        output[i] = input[pos - 1];
+    }
+
+    output[len] = '\0';
+
+    printf("\nOriginal input: %s\n", input);
+    printf("Permuted output: %s\n", output);
+
+    return 0;
+}
