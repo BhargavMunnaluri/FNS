@@ -1,0 +1,11 @@
+#include <iostream>
+#include <bitset>
+using namespace std;
+
+int main() {
+    string hexVal = "B6";                // Step 1: Hexadecimal input
+    int decimal = stoi(hexVal, nullptr, 16); // Step 2: convert hex (base 16) to decimal
+    string binary = bitset<8>(decimal).to_string(); // Step 3: convert decimal to 8-bit binary string
+    cout << "Binary: " << binary << endl;  // Step 4: print result
+    return 0;
+}
