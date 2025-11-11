@@ -1,0 +1,10 @@
+
+#include <iostream>
+#include <bitset>
+using namespace std;
+
+int main() {
+    int decimal = 182;
+    cout << "Binary: " << bitset<8>(decimal) << endl;
+    return 0;
+}
