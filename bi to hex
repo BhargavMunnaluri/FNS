@@ -1,0 +1,15 @@
+#include <iostream>     // for input-output (cout)
+#include <bitset>       // for binary operations
+#include <sstream>      // for converting numbers to hex strings
+using namespace std;
+
+int main() {
+    string binary = "10110110";           // Step 1: Binary string input
+    int decimal = stoi(binary, nullptr, 2); // Step 2: convert binary (base 2) to decimal using stoi()
+
+    stringstream ss;                       // Step 3: create a stringstream object
+    ss << hex << uppercase << decimal;     // Step 4: convert decimal to hex, and make it uppercase
+
+    cout << "Hexadecimal: " << ss.str() << endl; // Step 5: print the final hex string
+    return 0;
+}
