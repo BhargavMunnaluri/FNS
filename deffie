@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int P = 23; // Step 1: Public prime number
+    int G = 9;  // Step 2: Primitive root modulo P
+
+    int a = 4;  // Step 3: Alice's private key
+    int b = 3;  // Step 4: Bob's private key
+
+    // Step 5: Compute public keys
+    int A = (int)pow(G, a) % P; // Alice's public key
+    int B = (int)pow(G, b) % P; // Bob's public key
+
+    // Step 6: Compute shared secret
+    int secretA = (int)pow(B, a) % P; // Alice's secret
+    int secretB = (int)pow(A, b) % P; // Bob's secret
+
+    cout << "Public values: P = " << P << ", G = " << G << endl;
+    cout << "Alice's public key: " << A << endl;
+    cout << "Bob's public key: " << B << endl;
+    cout << "Shared secret (Alice): " << secretA << endl;
+    cout << "Shared secret (Bob): " << secretB << endl;
+
+    return 0;
+}
