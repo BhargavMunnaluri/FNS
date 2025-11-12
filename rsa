@@ -1,44 +1,8 @@
-#include <iostream>
-using namespace std;
-
-// Function to find gcd (greatest common divisor)
-int gcd(int a, int b) {
-    return (b == 0) ? a : gcd(b, a % b);
-}
-
-// Function to find modular inverse of e mod phi
-int modInverse(int e, int phi) {
-    for (int d = 2; d < phi; d++) {
-        if ((d * e) % phi == 1)
-            return d; // found modular inverse
-    }
-    return -1;
-}
-
-// Function for modular exponentiation (base^exp % mod)
-int modPower(int base, int exp, int mod) {
-    int result = 1;
-    for (int i = 0; i < exp; i++)
-        result = (result * base) % mod;
-    return result;
-}
-
-int main() {
-    int p = 11, q = 13;             // Step 1: choose 2 prime numbers
-    int n = p * q;                  // Step 2: compute n
-    int phi = (p - 1) * (q - 1);    // Step 3: compute phi(n)
-    int e = 7;                      // Step 4: choose e such that gcd(e, phi)=1
-    int d = modInverse(e, phi);     // Step 5: find private key d
-
-    int message = 9;                // Step 6: plain message
-    int cipher = modPower(message, e, n);  // Step 7: encryption → (M^e) mod n
-    int decrypted = modPower(cipher, d, n); // Step 8: decryption → (C^d) mod n
-
-    cout << "Public key: (" << e << ", " << n << ")" << endl;
-    cout << "Private key: (" << d << ", " << n << ")" << endl;
-    cout << "Original Message: " << message << endl;
-    cout << "Encrypted: " << cipher << endl;
-    cout << "Decrypted: " << decrypted << endl;
-
-    return 0;
-}
+int p = 3, q = 11, n = p * q, phi = (p - 1) * (q - 1), e = 7, d = 3, msg;
+	
+	cout<< "Enter message less than 33 ";
+	cin >> msg;
+	int c = 1, m = 1;
+	for (int i = 0; i < e; i++) c = (c * msg) % n;
+	for (int i = 0; i < d; i++) m = (m * c) % n;
+	cout << "Encrypted:" << c << " Decrypted:" << m;
